@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+while true; do
 VAR_WEBDATA=$(wget -O - https://docs.google.com/spreadsheets/d/1o1lQ6FFqr6RALPZ6I48cuWDd1clrPOlks8f3sWKx-9s/pubhtml?gid=217361177&single=true)
 VAR_FIRST_FLOOR=$(echo $VAR_WEBDATA | tr i \\n | grep "Wellness 1st" | head -n 1)
 VAR_FIRST_FLOOR_COUNT=$(echo ${VAR_FIRST_FLOOR:46:2})
 VAR_SECOND_FLOOR=$(echo $VAR_WEBDATA | tr i \\n | grep "Wellness 2nd" | head -n 1)
 VAR_SECOND_FLOOR_COUNT=$(echo ${VAR_SECOND_FLOOR:46:2})
 VAR_COUNT=$(expr $VAR_FIRST_FLOOR_COUNT + $VAR_SECOND_FLOOR_COUNT)
-echo $VAR_COUNT
-echo $VAR_COUNT
+echo $VAR_COUNT >> data
+sleep 120
+done
