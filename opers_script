@@ -7,4 +7,4 @@ VAR_SECOND_FLOOR=$(echo $VAR_WEBDATA | tr i \\n | grep "Wellness 2nd" | head -n 
 VAR_SECOND_FLOOR_COUNT=$(echo ${VAR_SECOND_FLOOR:46:2})
 VAR_COUNT=$(expr $VAR_FIRST_FLOOR_COUNT + $VAR_SECOND_FLOOR_COUNT)
 echo $VAR_COUNT
-
+echo $VAR_COUNT
