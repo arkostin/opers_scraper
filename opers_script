@@ -7,8 +7,15 @@ VAR_FIRST_FLOOR_COUNT=$(echo ${VAR_FIRST_FLOOR:46:2})
 VAR_SECOND_FLOOR=$(echo $VAR_WEBDATA | tr i \\n | grep "Wellness 2nd" | head -n 1)
 VAR_SECOND_FLOOR_COUNT=$(echo ${VAR_SECOND_FLOOR:46:2})
 VAR_COUNT=$(expr $VAR_FIRST_FLOOR_COUNT + $VAR_SECOND_FLOOR_COUNT)
-VAR_DATE=$(date '+%d/%m/%Y %H:%M:%S')
-VAR_FINAL="$VAR_DATE $VAR_COUNT"
-echo $VAR_FINAL >> data
-sleep 300
+VAR_TIME_CHANGES=$(echo $VAR_WEBDATA | sed -e 's/dir/\n/g' | grep "Wellness")
+VAR_DATE=$(echo ${VAR_TIME_CHANGES:67:32})
+VAR_FINAL="$VAR_COUNT $VAR_DATE"
+VAR_CHECK_DATA=$(echo tail -1 data)
+
+if [ "$VAR_FINAL" != "$VAR_CHECK_DATA" ]
+then
+    echo $VAR_FINAL >> data
+fi
+
+sleep 60
 done
