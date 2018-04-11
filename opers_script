@@ -7,8 +7,8 @@ VAR_FIRST_FLOOR_COUNT=$(echo ${VAR_FIRST_FLOOR:46:2})
 VAR_SECOND_FLOOR=$(echo $VAR_WEBDATA | tr i \\n | grep "Wellness 2nd" | head -n 1)
 VAR_SECOND_FLOOR_COUNT=$(echo ${VAR_SECOND_FLOOR:46:2})
 VAR_COUNT=$(expr $VAR_FIRST_FLOOR_COUNT + $VAR_SECOND_FLOOR_COUNT)
-VAR_DATE=$(date '+%d/%m/%Y %H:%M:%S');
+VAR_DATE=$(date '+%d/%m/%Y %H:%M:%S')
 VAR_FINAL="$VAR_DATE $VAR_COUNT"
 echo $VAR_FINAL >> data
-sleep 120
+sleep 300
 done
