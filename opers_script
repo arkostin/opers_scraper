@@ -10,7 +10,7 @@ VAR_COUNT=$(expr $VAR_FIRST_FLOOR_COUNT + $VAR_SECOND_FLOOR_COUNT)
 VAR_TIME_CHANGES=$(echo $VAR_WEBDATA | sed -e 's/dir/\n/g' | grep "Wellness")
 VAR_DATE=$(echo ${VAR_TIME_CHANGES:67:32})
 VAR_FINAL="$VAR_COUNT $VAR_DATE"
-VAR_CHECK_DATA=$(echo tail -1 data)
+VAR_CHECK_DATA=$(tail -1 data)
 
 if [ "$VAR_FINAL" != "$VAR_CHECK_DATA" ]
 then
